@@ -92,7 +92,14 @@ def course_recommender(course_list):
 
 
 # sql connector
-connection = pymysql.connect(host='localhost',user='root',password='root@MySQL4admin',db='cv')
+connection = pymysql.connect(
+    host='cv-resumeanalyser.b.aivencloud.com',
+    port=17528,
+    user='avnadmin',
+    password='AVNS_Q3J5GbCAyjYGZISYTVL',
+    db='defaultdb'
+)
+
 cursor = connection.cursor()
 
 
@@ -136,7 +143,7 @@ def run():
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
-    link = '<b>Built with 🤍 by <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: #021659;">Deepak Padhi</a></b>' 
+    link = '<b>Built with 🤍 by <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: #021659;">VIP</a></b>' 
     st.sidebar.markdown(link, unsafe_allow_html=True)
     st.sidebar.markdown('''
         <!-- site visitors -->
@@ -221,18 +228,29 @@ def run():
         ip_add = socket.gethostbyname(host_name)
         dev_user = os.getlogin()
         os_name_ver = platform.system() + " " + platform.release()
+        # g = geocoder.ip('me')
+        # latlong = g.latlng
+        # geolocator = Nominatim(user_agent="http")
+        # location = geolocator.reverse(latlong, language='en')
+        # address = location.raw['address']
+        # cityy = address.get('city', '')
+        # statee = address.get('state', '')
+        # countryy = address.get('country', '')  
+        # city = cityy
+        # state = statee
+        # country = countryy
         g = geocoder.ip('me')
         latlong = g.latlng
-        geolocator = Nominatim(user_agent="http")
-        location = geolocator.reverse(latlong, language='en')
-        address = location.raw['address']
-        cityy = address.get('city', '')
-        statee = address.get('state', '')
-        countryy = address.get('country', '')  
-        city = cityy
-        state = statee
-        country = countryy
-
+        if latlong:
+                geolocator = Nominatim(user_agent="my-app-name")
+                location = geolocator.reverse(latlong, language='en')
+                address = location.raw['address']
+                cityy = address.get('city', '')
+                statee = address.get('state', '')
+                countryy = address.get('country', '')  
+                city = cityy
+                state = statee
+                country = countryy
 
         # Upload Resume
         st.markdown('''<h5 style='text-align: left; color: #021659;'> Upload Your Resume, And Get Smart Recommendations</h5>''',unsafe_allow_html=True)
@@ -652,7 +670,7 @@ def run():
 
         <p align="justify">
             Built with 🤍 by 
-            <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: grey;">Deepak Padhi</a> through 
+            <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: grey;">VIP</a> through 
             <a href="https://www.linkedin.com/in/mrbriit/" style="text-decoration: none; color: grey;">Dr Bright --(Data Scientist)</a>
         </p>
 
@@ -679,7 +697,7 @@ def run():
                 
                 ### Total Users Count with a Welcome Message
                 values = plot_data.Idt.count()
-                st.success("Welcome Deepak ! Total %d " % values + " User's Have Used Our Tool : )")                
+                st.success("Welcome VIP ! Total %d " % values + " User's Have Used Our Tool : )")                
                 
                 ### Fetch user data from user_data(table) and convert it into dataframe
                 cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, convert(Predicted_Field using utf8), Timestamp, Name, Email_ID, resume_score, Page_no, pdf_name, convert(User_level using utf8), convert(Actual_skills using utf8), convert(Recommended_skills using utf8), convert(Recommended_courses using utf8), city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
