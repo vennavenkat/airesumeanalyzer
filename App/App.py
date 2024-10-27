@@ -93,11 +93,11 @@ def course_recommender(course_list):
 
 # sql connector
 connection = pymysql.connect(
-    host='cv-resumeanalyser.b.aivencloud.com',
-    port=17528,
-    user='avnadmin',
-    password='AVNS_Q3J5GbCAyjYGZISYTVL',
-    db='defaultdb'
+    host='airesumeanalyser.c5eoqqou856z.us-east-1.rds.amazonaws.com',
+    port=3306,
+    user='admin',
+    password='Developer9492',
+    db='vipdb'
 )
 
 cursor = connection.cursor()
