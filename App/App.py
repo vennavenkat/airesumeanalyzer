@@ -1,6 +1,3 @@
-# Developed by dnoobnerd [https://dnoobnerd.netlify.app]    Made with Streamlit
-
-
 ###### Packages Used ######
 import streamlit as st # core package used in this project
 import pandas as pd
@@ -99,6 +96,13 @@ connection = pymysql.connect(
     password='Developer9492',
     db='vipdb'
 )
+# connection = pymysql.connect(
+#     host='localhost',
+#     port=3306,
+#     user='root',
+#     password='root',
+#     db='cv'
+# )
 
 cursor = connection.cursor()
 
